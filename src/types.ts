@@ -4,12 +4,17 @@ export interface DiagnosesEntry {
   latin?: string;
 }
 
+export enum Gender {
+  Male = 'male',
+  Female = 'female'
+}
+
 export interface PatientsFullEntry {
   id: string;
   name: string;
   dateOfBirth: string;
   ssn: string;
-  gender: string;
+  gender: Gender;
   occupation: string;
 }
 

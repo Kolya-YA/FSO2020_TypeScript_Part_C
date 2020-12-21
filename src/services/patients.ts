@@ -13,8 +13,6 @@ const getSafetyEntries = (): PatientsSafetyEntry[] => patients.map(
       .toString(16)
       .concat(patients[0].id.slice(patients[0].id.indexOf('-'))
       );
-
-    console.log(newId);
     
     const newPatient = {
       id: newId,
@@ -22,8 +20,6 @@ const getSafetyEntries = (): PatientsSafetyEntry[] => patients.map(
     };
 
     patients.push(newPatient);
-
-    console.log(patients.length)
     return newPatient;
   };
 

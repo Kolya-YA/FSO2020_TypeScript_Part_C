@@ -1,10 +1,17 @@
 import express from 'express';
-import { getSafetyEntries } from '../services/patients';
+import patientService from '../services/patients';
  
 const router = express.Router();
 
 router.get('/', (_req, res) => {
-  res.send(getSafetyEntries());
+  res.send(patientService.getSafetyEntries());
+});
+
+router.post('/', (req, res) => {
+  const { name, dateOfBirth, ssn, gender, occupation }  = req.body;
+  const newPatient = patientService.addEntries({ name, dateOfBirth, ssn, gender, occupation });
+  console.log(newPatient);
+  res.json(newPatient);
 });
 
 export default router;

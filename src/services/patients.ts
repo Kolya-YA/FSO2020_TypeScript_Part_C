@@ -1,17 +1,34 @@
 import patients from '../../data/patientsData';
 
-import { PatientsFullEntry, PatientsSafetyEntry } from '../types';
+import { NewPatientEntry, PatientsFullEntry, PatientsSafetyEntry } from '../types';
 
 const getFullEntries = (): Array<PatientsFullEntry> => patients;
 
 const getSafetyEntries = (): PatientsSafetyEntry[] => patients.map(
-  ({ ssn: _ssn, ...safetyFields }) => safetyFields
-);
+      ({ ssn: _ssn, ...safetyFields }) => safetyFields
+    );
+    
+    const addEntries = (newPatientEntry: NewPatientEntry): PatientsSafetyEntry => {
+      const newId = (Math.max(...patients.map(p => parseInt(p.id.split('-')[0], 16))) + 1)
+      .toString(16)
+      .concat(patients[0].id.slice(patients[0].id.indexOf('-'))
+      );
 
-const addEntries = (): null => null;
+    console.log(newId);
+    
+    const newPatient = {
+      id: newId,
+      ...newPatientEntry
+    };
 
-export {
+    patients.push(newPatient);
+
+    console.log(patients.length)
+    return newPatient;
+  };
+
+export default {
   getFullEntries,
   getSafetyEntries,
   addEntries
-}; 
+};
